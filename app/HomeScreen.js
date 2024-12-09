@@ -1,12 +1,12 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default function ProfileScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   return (
-    <View>
-      <Text>Profile Screen</Text>
+    <View style={styles.container}>
+      <Text>Home Screen</Text>
       <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
+        title="Go to Profile"
+        onPress={() => navigation.navigate('Profile')}
       />
     </View>
   );
