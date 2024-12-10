@@ -7,6 +7,7 @@ import {
   Image,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from 'react-native';
 import { useState } from 'react'
 
@@ -18,7 +19,7 @@ export default function SignupScreen({ navigation }) {
   const [name, setName] = useState('Name');
   const [password, setPassword] = useState('Password');
 
-
+  const [emailTouched, setEmailTouched] = useState(false);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -62,7 +63,12 @@ export default function SignupScreen({ navigation }) {
             style={styles.input}
             onChangeText={(value) => setEmail(value)}
             value={email}
-            onFocus={() => setEmail('')}
+            onFocus={() => {
+              if (!emailTouched) {
+                setEmail('');
+                setEmailTouched(true); // Marque le champ comme "touché"
+              }
+            }}
           />
           <TextInput
             style={styles.input}
@@ -72,12 +78,12 @@ export default function SignupScreen({ navigation }) {
           />
 
 
-          <Text style={styles.login}>
-            Already have an account? <Button
-              title="Signin"
-              onPress={() => navigation.navigate('Login')}
-            />
-          </Text>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Already have an account?</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.signin}>Signin</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -96,6 +102,8 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+    justifyContent: 'center',
+
   },
   logoContainer: {
     position: 'absolute',
@@ -104,9 +112,11 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -80 }, { translateY: -60 }],
   },
   logo: {
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: 'bold',
-    color: '#000',
+    color: 'black',
+    textAlign: 'center',
+    marginLeft: '-60',
 
   },
   content: {
@@ -131,7 +141,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 50,
+
   },
   subtitle: {
     fontSize: 14,
@@ -148,5 +159,19 @@ const styles = StyleSheet.create({
   login: {
     textAlign: 'center',
     fontSize: 12,
-  }
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 14,
+    color: 'black',
+  },
+  signin: {
+    fontSize: 14,
+    color: 'blue',
+    marginLeft: 5,
+  },
 });

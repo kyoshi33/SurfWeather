@@ -14,11 +14,12 @@ export default function HomeScreen({ navigation }) {
 
       <ImageBackground style={styles.image} source={require('../assets/vague.jpg')} >
         <Text style={styles.title}>SURFWEATHER</Text>
-        <Button
+        <TouchableOpacity
           style={styles.naming}
-          title="Go to Profile"
-          onPress={() => navigation.navigate('Profile')}
-        />
+          onPress={() => navigation.navigate('Weather')}
+        >
+          <Text style={styles.namingText}>Let's go to Surf</Text>
+        </TouchableOpacity>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
             <Text style={styles.buttonText}>Connexion</Text>
@@ -50,12 +51,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   naming: {
-    color: '#ff999d',
-    fontWeight: 'bold',
+    backgroundColor: '#ff999d',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginTop: 20,
   },
+  namingText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
   buttonContainer: {
     position: 'absolute',
-    bottom: 40, // Position en bas de l'écran
+    bottom: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '80%',
