@@ -39,7 +39,7 @@ export default function WeatherScreen() {
     { key: 'photos', title: 'Photos' },
   ]);
 
-  // Définit la logique pour chaque onglet
+
   const renderScene = SceneMap({
     weather: WeatherTab,
     forecast: ForecastTab,
