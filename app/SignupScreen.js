@@ -39,7 +39,7 @@ export default function SignupScreen({ navigation }) {
 
 
         <View style={styles.content}>
-          <Text style={styles.title}>Everything you need to check the surf in one place.</Text>
+          <Text style={styles.title}>"Stay connected to the ocean, wherever you are."</Text>
           <Text style={styles.subtitle}>Create an account for free</Text>
 
 
@@ -66,7 +66,7 @@ export default function SignupScreen({ navigation }) {
             onFocus={() => {
               if (!emailTouched) {
                 setEmail('');
-                setEmailTouched(true); // Marque le champ comme "touché"
+                setEmailTouched(true);
               }
             }}
           />
@@ -84,7 +84,18 @@ export default function SignupScreen({ navigation }) {
               <Text style={styles.signin}>Signin</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.footer}>
+            <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.buttonText}>Retour</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonConnexion} onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.buttonText}>Connexion</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
+
+
       </View>
     </TouchableWithoutFeedback>
   );
@@ -174,4 +185,43 @@ const styles = StyleSheet.create({
     color: 'blue',
     marginLeft: 5,
   },
+  button: {
+    backgroundColor: '#65d1dc',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    width: '30%',
+    marginTop: '120',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  buttonBack: {
+    backgroundColor: '#65d1dc',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    width: '40%',
+    marginTop: '120',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonConnexion: {
+    backgroundColor: '#ff999d',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    width: '40%',
+    marginTop: '120',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+
 });
