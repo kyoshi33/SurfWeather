@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { useWindowDimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, useWindowDimensions, SafeAreaView } from 'react-native';
+import { TabView, TabBar } from 'react-native-tab-view';
 
 const WeatherTab = () => (
   <View style={styles.scene}>
@@ -29,9 +28,7 @@ const PhotosTab = () => (
 
 export default function WeatherScreen() {
   const layout = useWindowDimensions();
-
   const [index, setIndex] = useState(0);
-
   const [routes] = useState([
     { key: 'weather', title: 'Weather' },
     { key: 'forecast', title: 'Forecast' },
@@ -39,29 +36,47 @@ export default function WeatherScreen() {
     { key: 'photos', title: 'Photos' },
   ]);
 
-
-  const renderScene = SceneMap({
-    weather: WeatherTab,
-    forecast: ForecastTab,
-    live: LiveTab,
-    photos: PhotosTab,
-  });
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case 'weather':
+        return <WeatherTab />;
+      case 'forecast':
+        return <ForecastTab />;
+      case 'live':
+        return <LiveTab />;
+      case 'photos':
+        return <PhotosTab />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-      renderTabBar={(props) => (
-        <TabBar
-          {...props}
-          indicatorStyle={{ backgroundColor: 'blue' }}
-          style={{ backgroundColor: 'white' }}
-          labelStyle={{ color: 'black' }}
-        />
-      )}
-    />
+    <SafeAreaView style={{ flex: 1 }}>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        renderTabBar={(props) => (
+          <View style={{ backgroundColor: 'grey', }}>
+            <TabBar
+              {...props}
+              indicatorStyle={{ backgroundColor: 'blue', height: 2 }}
+              style={{ backgroundColor: "transparent", height: 50 }}
+              renderLabel={(route) => (
+                <View>
+                  <Text style={styles.text}>
+                    {route.title}
+                  </Text>
+                </View>
+              )}
+            />
+          </View>
+        )
+        }
+      />
+    </SafeAreaView >
   );
 }
 
@@ -72,4 +87,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f3f3f3',
   },
+  text: {
+    color: 'black',
+    fontSize: 50,
+    fontWeight: 'bold',
+  }
 });
