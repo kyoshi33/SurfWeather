@@ -8,6 +8,7 @@ import ProfileScreen from './app/ProfileScreen';
 import SignupScreen from './app/SignupScreen';
 import LoginScreen from './app/LoginScreen';
 import WeatherScreen from './app/WeatherScreen';
+import MenuScreen from './app/MenuScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ export default function App() {
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Weather" component={WeatherScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
