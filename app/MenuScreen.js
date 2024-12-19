@@ -10,8 +10,8 @@ export default function MenuScreen({ navigation }) {
     <View style={styles.container}>
       <Text>Profile Screen</Text>
       <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
+        title="Profile"
+        onPress={() => navigation.navigate('Profile')}
       />
     </View>
   );

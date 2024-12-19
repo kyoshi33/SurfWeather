@@ -9,6 +9,7 @@ import SignupScreen from './app/SignupScreen';
 import LoginScreen from './app/LoginScreen';
 import WeatherScreen from './app/WeatherScreen';
 import MenuScreen from './app/MenuScreen';
+import SelectionScreen from './app/SelectionScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Weather" component={WeatherScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen name="Spots" component={SelectionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
